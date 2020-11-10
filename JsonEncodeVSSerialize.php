@@ -4,10 +4,10 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 
-$handle = fopen('./test.csv', 'w+');
+$handle = fopen('./results/test.csv', 'w+');
 fputcsv($handle, ['json', 'serialize'], "\t");
 
-echo "Progress :      ";  // 5 characters of padding at the end
+echo "Progress :         ";  // 7 characters of padding at the end
 $steps = 1000;
 for ($i = 0; $i < $steps; $i++) {
 
@@ -38,9 +38,9 @@ for ($i = 0; $i < $steps; $i++) {
 
 
     fputcsv($handle, [$jsonTime, $serializeTime], "\t");
-    echo "\033[5D";      // Move 5 characters backward
+    echo "\033[7D";      // Move 5 characters backward
 
-    echo str_pad(round(($i + 1) / $steps * 100, 2), 3, ' ', STR_PAD_LEFT) . " %";    // Output is always 5 characters long
+    echo str_pad(round(($i + 1) / $steps * 100, 2) . " %", 7, ' ', STR_PAD_RIGHT);
 
 }
 echo("\r\n");
